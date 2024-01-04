@@ -1,0 +1,42 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.0.0
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/jashburn8020/python-testing-with-pytest:
+      branch: master
+      repo: https://github.com/jashburn8020/python-testing-with-pytest
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/jashburn8020/python-testing-with-pytest git:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-wisteria-skunk.sh
+        container: qc.acc_messy-brown-goat
+  QC.Doc:
+    repos:
+      github.com/jashburn8020/python-testing-with-pytest find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.pasty-maroon-bandicoot.sh
+        container: qc.doc_stuffy-goldenrod-akita
+      github.com/jashburn8020/python-testing-with-pytest git:
+        commands:
+        - /usr/bin/env sh .sqa/script.stinky-corn-flounder.sh
+        container: qc.doc_lanky-heliotrope-kudu
+  QC.Lic:
+    repos:
+      github.com/jashburn8020/python-testing-with-pytest licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-cerise-snail.sh
+        container: qc.lic_zippy-razzmatazz-eleuth
+  QC.Ver:
+    repos:
+      github.com/jashburn8020/python-testing-with-pytest get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-auburn-orangutan.sh
+        container: qc.ver_shaggy-azure-emu
+timeout: 5400
